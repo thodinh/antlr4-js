@@ -10,6 +10,32 @@
  */
 export default class Token {
 
+	static INVALID_TYPE = 0;
+
+	/**
+	 * During lookahead operations, this "token" signifies we hit rule end ATN state
+	 * and did not follow it despite needing to.
+	 */
+	static EPSILON = -2;
+
+	static MIN_USER_TOKEN_TYPE = 1;
+
+	static EOF = -1;
+
+	/**
+	 * All tokens go to the parser (unless skip() is called in that rule)
+	 * on a particular "channel". The parser tunes to a particular channel
+	 * so that whitespace etc... can go to the parser on a "hidden" channel.
+	 */
+	static DEFAULT_CHANNEL = 0;
+
+	/**
+	 * Anything on different channel than DEFAULT_CHANNEL is not parsed
+	 * by parser.
+	 */
+	static HIDDEN_CHANNEL = 1;
+
+
 	constructor() {
 		this.source = null;
 		this.type = null; // token type of the token
@@ -38,29 +64,3 @@ export default class Token {
 		this._text = text;
 	}
 }
-
-Token.INVALID_TYPE = 0;
-
-/**
- * During lookahead operations, this "token" signifies we hit rule end ATN state
- * and did not follow it despite needing to.
- */
-Token.EPSILON = -2;
-
-Token.MIN_USER_TOKEN_TYPE = 1;
-
-Token.EOF = -1;
-
-/**
- * All tokens go to the parser (unless skip() is called in that rule)
- * on a particular "channel". The parser tunes to a particular channel
- * so that whitespace etc... can go to the parser on a "hidden" channel.
- */
-Token.DEFAULT_CHANNEL = 0;
-
-/**
- * Anything on different channel than DEFAULT_CHANNEL is not parsed
- * by parser.
- */
-Token.HIDDEN_CHANNEL = 1;
-
