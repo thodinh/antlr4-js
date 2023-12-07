@@ -6,7 +6,7 @@
   "browser": "src/antlr4/index.web.js",
   "main": "src/antlr4/index.node.js",
   "module": "src/antlr4/index.node.js",
-  "types": "src/antlr4/index/index.d.ts",
+  "types": "src/antlr4/index.d.ts",
   "repository": "antlr/antlr4.git",
   "keywords": [
     "lexer",
