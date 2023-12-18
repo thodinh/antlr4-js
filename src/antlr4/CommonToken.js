@@ -3,13 +3,13 @@ import Token from "./Token.js";
 export default class CommonToken extends Token {
     constructor(source, type, channel, start, stop) {
         super();
-        this.source = source !== undefined ? source : CommonToken.EMPTY_SOURCE;
-        this.type = type !== undefined ? type : null;
-        this.channel = channel !== undefined ? channel : Token.DEFAULT_CHANNEL;
-        this.start = start !== undefined ? start : -1;
-        this.stop = stop !== undefined ? stop : -1;
+        this.source = source ? source : CommonToken.EMPTY_SOURCE;
+        this.type = type ? type : null;
+        this.channel = channel ? channel : Token.DEFAULT_CHANNEL;
+        this.start = start ? start : -1;
+        this.stop = stop ? stop : -1;
         this.tokenIndex = -1;
-        if (this.source[0] !== null) {
+        if (this.source[0]) {
             this.line = source[0].line;
             this.column = source[0].column;
         } else {
@@ -63,11 +63,11 @@ export default class CommonToken extends Token {
     }
 
     get text(){
-        if (this._text !== null) {
+        if (this._text) {
             return this._text;
         }
         const input = this.getInputStream();
-        if (input === null) {
+        if (!input) {
             return null;
         }
         const n = input.size;
